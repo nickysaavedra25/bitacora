@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Bitácora de Laboratorios UTH</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Login Screen -->
+        <div id="login-screen" class="screen active">
+            <div class="header">
+                <h1>BITACORA</h1>
+            </div>
+            <div class="content">
+                <div class="login-container">
+                    <div class="logo-container">
+                        <img src="./logo_uth_1.png" alt="UTH Logo" class="logo-large">
+                    </div>
+                    <h2>LOGIN</h2>
+                    <p>Ingresa tu matrícula para crear un espacio</p>
+                    <form id="login-form">
+                        <input type="text" id="matricula" placeholder="Matrícula" required>
+                        <button type="submit">Ingresar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edificio Selection -->
+        <div id="edificio-screen" class="screen">
+            <div class="header">
+                <div class="header-left">
+                    <div class="logo-small">
+                        <img src="./logo_uth_1.png" alt="UTH Logo">
+                    </div>
+                    <h1>BITACORA</h1>
+                </div>
+                <button class="logout-btn" onclick="logout()">Cerrar Sesión</button>
+            </div>
+            <div class="content">
+                <div class="selection-container">
+                    <h2>Selecciona el Edificio</h2>
+                    <div class="button-group">
+                        <button class="selection-btn" onclick="selectEdificio('E')">Edificio E</button>
+                        <button class="selection-btn" onclick="selectEdificio('R')">Edificio R</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Laboratorio Selection -->
+        <div id="laboratorio-screen" class="screen">
+            <div class="header">
+                <div class="header-left">
+                    <div class="logo-small">
+                        <img src="./logo_uth_1.png" alt="UTH Logo">
+                    </div>
+                    <h1>BITACORA</h1>
+                </div>
+                <button class="logout-btn" onclick="logout()">Cerrar Sesión</button>
+            </div>
+            <div class="content laboratorio-content">
+                <div class="sidebar">
+                    <button class="back-btn" onclick="backToEdificio()">← Volver a edificios</button>
+                    <h3 id="edificio-title">Laboratorios del edificio</h3>
+                </div>
+                <div class="main-content">
+                    <div class="selection-container">
+                        <h2>Selecciona el laboratorio a utilizar</h2>
+                        <div id="laboratorio-buttons" class="button-group-vertical">
+                            <!-- Buttons will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bitacora Form -->
+        <div id="bitacora-screen" class="screen">
+            <div class="header">
+                <div class="header-left">
+                    <div class="logo-small">
+                        <img src="./logo_uth_1.png" alt="UTH Logo">
+                    </div>
+                    <h1>BITACORA</h1>
+                </div>
+                <div class="header-right">
+                    <button class="view-records-btn" onclick="viewRecords()">Ver Registros</button>
+                    <button class="logout-btn" onclick="logout()">Cerrar Sesión</button>
+                </div>
+            </div>
+            <div class="content">
+                <div class="form-container">
+                    <h2>Nueva Bitácora</h2>
+                    <p id="laboratorio-info">Laboratorio: </p>
+                    <form id="bitacora-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Fecha (automática)</label>
+                                <input type="date" id="fecha" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Hora de inicio (automática)</label>
+                                <input type="time" id="hora-inicio" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Hora de salida</label>
+                                <input type="time" id="hora-salida" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Grupo</label>
+                                <input type="text" id="grupo" placeholder="Ej: 1A, 2B, etc." required>
+                            </div>
+                            <div class="form-group">
+                                <label>Edificio</label>
+                                <input type="text" id="edificio-readonly" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Clase</label>
+                                <input type="text" id="curso" placeholder="Ej: Laboratorio Web" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Observaciones</label>
+                            <textarea id="observaciones" placeholder="Anota las observaciones" rows="4" required></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="cancel-btn" onclick="backToLaboratorio()">Cancelar</button>
+                            <button type="submit" class="save-btn">Guardar Bitácora</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Records View -->
+        <div id="records-screen" class="screen">
+            <div class="header">
+                <div class="header-left">
+                    <div class="logo-small">
+                        <img src="./logo_uth_1.png" alt="UTH Logo">
+                    </div>
+                    <h1>BITACORA</h1>
+                </div>
+                <button class="logout-btn" onclick="logout()">Cerrar Sesión</button>
+            </div>
+            <div class="content">
+                <div class="records-container">
+                    <h2 id="records-title">BITACORA LABORATORIO</h2>
+                    <div id="records-content">
+                        <!-- Records table will be populated by JavaScript -->
+                    </div>
+                    <div class="records-actions">
+                        <button class="save-btn" onclick="backToBitacora()">Agregar Registro</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Modal -->
+        <div id="success-modal" class="modal">
+            <div class="modal-content">
+                <div class="success-icon">✓</div>
+                <h2>¡Bitácora Guardada!</h2>
+                <p>Tu registro ha sido guardado exitosamente en el sistema.</p>
+                <div class="modal-actions">
+                    <button class="modal-btn secondary" onclick="closeModal()">Crear Nueva</button>
+                    <button class="modal-btn primary" onclick="viewRecordsFromModal()">Ver Registros</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

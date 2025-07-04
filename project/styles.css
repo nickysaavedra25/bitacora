@@ -1,0 +1,609 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #000000;
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.screen {
+    display: none;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* Header Styles */
+.header {
+    background-color: #000000;
+    border-bottom: 1px solid #ffffff;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.header-right {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.logo-small {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+}
+
+.logo-small img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.logo-large {
+    width: 128px;
+    height: 128px;
+    object-fit: contain;
+    margin-bottom: 1.5rem;
+}
+
+.logo-container {
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+/* Content Styles */
+.content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    width: 100%;
+}
+
+/* Login Screen */
+.login-container {
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 1rem;
+}
+
+.login-container h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.login-container p {
+    color: #d1d5db;
+    margin-bottom: 2rem;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+#matricula {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: white;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    text-align: center;
+    font-size: 1rem;
+    color: #000;
+}
+
+#matricula:focus {
+    outline: 2px solid #10b981;
+}
+
+/* Buttons */
+button {
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.6rem;
+    transition: all 0.2s;
+    background-color: #10ac78;
+    color: white;
+    padding: 0.75rem;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 200px;
+    align-self: center;
+    display: inline-block;
+}
+
+button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.selection-btn {
+    background-color: #10ac78;
+    color: white;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.6rem;
+    transition: background-color 0.2s;
+    width: 100%;
+    max-width: 192px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+}
+
+.selection-btn:hover {
+    background-color: #059669;
+}
+
+.logout-btn {
+    background-color: #dc2626;
+    color: white;
+    padding: 0.75rem;
+    width: auto;
+}
+
+.logout-btn:hover {
+    background-color: #b91c1c;
+}
+
+.view-records-btn {
+    background-color: #2563eb;
+    color: white;
+    padding: 0.75rem;
+    width: auto;
+}
+
+.view-records-btn:hover {
+    background-color: #1d4ed8;
+}
+
+.save-btn {
+    background-color: #10b981;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    width: auto;
+}
+
+.save-btn:hover {
+    background-color: #059669;
+}
+
+.cancel-btn {
+    background-color: #dc2626;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    width: auto;
+}
+
+.cancel-btn:hover {
+    background-color: #b91c1c;
+}
+
+/* Selection Screens */
+.selection-container {
+    text-align: center;
+    width: 100%;
+    padding: 1rem;
+}
+
+.selection-container h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.button-group-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    width: 100%;
+}
+
+.button-group-vertical .selection-btn {
+    width: 100%;
+    max-width: 192px;
+}
+
+/* Laboratorio Screen */
+.laboratorio-content {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar {
+    width: 100%;
+    background-color: #1f2937;
+    padding: 1.5rem;
+    border-right: none;
+    border-bottom: 1px solid #374151;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    color: #10b981;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0;
+    width: auto;
+    font-size: 1rem;
+}
+
+.back-btn:hover {
+    color: #059669;
+    background: none;
+}
+
+.sidebar h3 {
+    color: white;
+    font-size: 1.125rem;
+    font-weight: bold;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    width: 100%;
+}
+
+/* Form Styles */
+.form-container {
+    background-color: #1f2937;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 768px;
+}
+
+.form-container h2 {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.form-container p {
+    color: #d1d5db;
+    margin-bottom: 1.5rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: #374151;
+    border: 1px solid #4b5563;
+    border-radius: 0.5rem;
+    color: white;
+    font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: 2px solid #10b981;
+}
+
+.form-group input[readonly] {
+    background-color: #4b5563;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Records Screen */
+.records-container {
+    width: 100%;
+    max-width: 1400px;
+    padding: 1rem;
+}
+
+.records-container h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: white;
+}
+
+.records-table {
+    background-color: white;
+    border-radius: 0.5rem;
+    overflow: auto;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+}
+
+.records-table table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+.records-table th {
+    background-color: #e5e7eb;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #374151;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-right: 1px solid #d1d5db;
+}
+
+.records-table th:last-child {
+    border-right: none;
+}
+
+.records-table td {
+    padding: 1rem;
+    font-size: 0.875rem;
+    color: #111827;
+    border-right: 1px solid #e5e7eb;
+}
+
+.records-table td:last-child {
+    border-right: none;
+}
+
+.records-table tr:nth-child(even) {
+    background-color: #f9fafb;
+}
+
+.records-table tr:nth-child(odd) {
+    background-color: white;
+}
+
+.records-table tbody tr {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.matricula-cell {
+    font-weight: 500;
+}
+
+.observaciones-cell {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.no-records {
+    text-align: center;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 0.5rem;
+}
+
+.no-records div {
+    color: #9ca3af;
+    font-size: 1rem;
+}
+
+.no-records p {
+    color: #6b7280;
+    margin-top: 0.5rem;
+}
+
+.records-actions {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background-color: #1f2937;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.success-icon {
+    width: 64px;
+    height: 64px;
+    background-color: #10b981;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    margin: 0 auto 1rem;
+}
+
+.modal-content h2 {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.modal-content p {
+    color: #d1d5db;
+    margin-bottom: 1.5rem;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.modal-btn {
+    flex: 1;
+    min-width: 120px;
+    padding: 0.75rem;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+}
+
+.modal-btn.secondary {
+    background-color: #4b5563;
+    color: white;
+}
+
+.modal-btn.secondary:hover {
+    background-color: #374151;
+}
+
+.modal-btn.primary {
+    background-color: #10b981;
+    color: white;
+}
+
+.modal-btn.primary:hover {
+    background-color: #059669;
+}
+
+/* Responsive Design */
+@media (min-width: 640px) {
+    .content {
+        padding: 2rem;
+    }
+    
+    .login-container {
+        padding: 2rem;
+    }
+    
+    .selection-container {
+        padding: 2rem;
+    }
+    
+    .form-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .laboratorio-content {
+        flex-direction: row;
+    }
+    
+    .sidebar {
+        width: 320px;
+        border-right: 1px solid #374151;
+        border-bottom: none;
+    }
+    
+    .records-container h2 {
+        font-size: 1.875rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .button-group {
+        flex-direction: row;
+    }
+    
+    .form-actions {
+        flex-wrap: nowrap;
+    }
+    
+    .modal-actions {
+        flex-wrap: nowrap;
+    }
+}
+
+@media (min-width: 1024px) {
+    .form-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
