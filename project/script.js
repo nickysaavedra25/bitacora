@@ -106,10 +106,12 @@ function showLaboratorioScreen(edificio) {
     showScreen('laboratorio');
 }
 
-// Select laboratorio
+// Select laboratorio - MODIFICADA
 function selectLaboratorio(laboratorio) {
     appState.laboratorioSeleccionado = laboratorio;
-    showBitacoraForm();
+    
+    // Mostrar la pantalla de registros en lugar del formulario
+    viewRecords();
 }
 
 // Show bitacora form
@@ -117,6 +119,7 @@ function showBitacoraForm() {
     document.getElementById('laboratorio-info').textContent = 
         `Laboratorio: ${appState.edificioSeleccionado}${appState.laboratorioSeleccionado}`;
     document.getElementById('edificio-readonly').value = appState.edificioSeleccionado;
+    document.getElementById('matricula-bitacora').value = appState.matricula;
     
     // Reset form
     document.getElementById('bitacora-form').reset();
@@ -137,8 +140,11 @@ function saveBitacora() {
         horaInicio: document.getElementById('hora-inicio').value,
         horaSalida: document.getElementById('hora-salida').value,
         grupo: document.getElementById('grupo').value,
+        cuatrimestre: document.getElementById('cuatrimestre').value,
+        numAlumnos: document.getElementById('num-alumnos').value,
         curso: document.getElementById('curso').value,
-        observaciones: document.getElementById('observaciones').value
+        observaciones: document.getElementById('observaciones').value,
+        matricula: document.getElementById('matricula-bitacora').value
     };
     
     const entry = {
@@ -146,7 +152,6 @@ function saveBitacora() {
         ...formData,
         edificio: appState.edificioSeleccionado,
         laboratorio: appState.laboratorioSeleccionado,
-        matricula: appState.matricula,
         timestamp: Date.now()
     };
     
@@ -163,8 +168,8 @@ function showSuccessModal() {
 // Close modal
 function closeModal() {
     document.getElementById('success-modal').classList.remove('active');
-    // Reset form for new entry
-    showBitacoraForm();
+    // Volver a la vista de registros en lugar del formulario
+    viewRecords();
 }
 
 // View records from modal
@@ -203,9 +208,11 @@ function viewRecords() {
                     <thead>
                         <tr>
                             <th>Fecha</th>
-                            <th>Hora de Inicio</th>
-                            <th>Hora de Salida</th>
+                            <th>Hora Inicio</th>
+                            <th>Hora Salida</th>
                             <th>Grupo</th>
+                            <th>Cuatrimestre</th>
+                            <th>Alumnos</th>
                             <th>Clase</th>
                             <th>Matrícula</th>
                             <th>Observaciones</th>
@@ -218,6 +225,8 @@ function viewRecords() {
                                 <td>${entry.horaInicio}</td>
                                 <td>${entry.horaSalida}</td>
                                 <td>${entry.grupo}</td>
+                                <td>${entry.cuatrimestre}</td>
+                                <td>${entry.numAlumnos}</td>
                                 <td>${entry.curso}</td>
                                 <td class="matricula-cell">${entry.matricula}</td>
                                 <td class="observaciones-cell" title="${entry.observaciones}">${entry.observaciones}</td>
@@ -240,11 +249,12 @@ function backToEdificio() {
     showScreen('edificio');
 }
 
+// MODIFICADA: Ahora va del bitacora form al records view (no al laboratorio screen)
 function backToLaboratorio() {
-    appState.laboratorioSeleccionado = '';
-    showLaboratorioScreen(appState.edificioSeleccionado);
+    viewRecords();
 }
 
+// MODIFICADA: Ahora va del records view al bitacora form
 function backToBitacora() {
     showBitacoraForm();
 }
