@@ -56,17 +56,19 @@ body {
     min-width: 40px;
 }
 
-.logo-small img {
+.logo-large {
+    width: 220px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.logo-img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-}
-
-.logo-large {
-    width: 128px;
-    height: 128px;
-    object-fit: contain;
-    margin-bottom: 1.5rem;
 }
 
 .logo-container {
@@ -95,6 +97,13 @@ h1 {
     width: 100%;
     max-width: 400px;
     padding: 1rem;
+}
+
+.login-container .logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem; /* ya existe, pero puedes ajustar si lo deseas */
 }
 
 .login-container h2 {
@@ -138,14 +147,17 @@ button {
     border: none;
     border-radius: 0.6rem;
     transition: all 0.2s;
-    background-color: #10ac78;
+    background-color: #10b981;
     color: white;
     padding: 0.75rem;
     font-size: 1rem;
     width: 100%;
     max-width: 200px;
     align-self: center;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 button:hover {
@@ -158,7 +170,7 @@ button:disabled {
 }
 
 .selection-btn {
-    background-color: #10ac78;
+    background-color: #10b981;
     color: white;
     padding: 1rem;
     font-size: 1rem;
@@ -168,8 +180,9 @@ button:disabled {
     transition: background-color 0.2s;
     width: 100%;
     max-width: 192px;
-    display: inline-block;
-    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
 }
 
@@ -180,7 +193,7 @@ button:disabled {
 .logout-btn {
     background-color: #dc2626;
     color: white;
-    padding: 0.75rem;
+    padding: 0.75rem 1rem;
     width: auto;
 }
 
@@ -191,7 +204,7 @@ button:disabled {
 .view-records-btn {
     background-color: #2563eb;
     color: white;
-    padding: 0.75rem;
+    padding: 0.75rem 1rem;
     width: auto;
 }
 
@@ -283,6 +296,7 @@ button:disabled {
     padding: 0;
     width: auto;
     font-size: 1rem;
+    transition: color 0.2s;
 }
 
 .back-btn:hover {
@@ -387,70 +401,6 @@ button:disabled {
     color: white;
 }
 
-.records-table {
-    background-color: white;
-    border-radius: 0.5rem;
-    overflow: auto;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    max-width: 100%;
-}
-
-.records-table table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 800px;
-}
-
-.records-table th {
-    background-color: #e5e7eb;
-    padding: 0.75rem;
-    text-align: left;
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: #374151;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-right: 1px solid #d1d5db;
-}
-
-.records-table th:last-child {
-    border-right: none;
-}
-
-.records-table td {
-    padding: 1rem;
-    font-size: 0.875rem;
-    color: #111827;
-    border-right: 1px solid #e5e7eb;
-}
-
-.records-table td:last-child {
-    border-right: none;
-}
-
-.records-table tr:nth-child(even) {
-    background-color: #f9fafb;
-}
-
-.records-table tr:nth-child(odd) {
-    background-color: white;
-}
-
-.records-table tbody tr {
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.matricula-cell {
-    font-weight: 500;
-}
-
-.observaciones-cell {
-    max-width: 200px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
 .no-records {
     text-align: center;
     padding: 2rem;
@@ -459,13 +409,13 @@ button:disabled {
 }
 
 .no-records div {
-    color: #9ca3af;
-    font-size: 1rem;
+    color: #6b7280;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
 }
 
 .no-records p {
-    color: #6b7280;
-    margin-top: 0.5rem;
+    color: #9ca3af;
 }
 
 .records-actions {
@@ -509,7 +459,6 @@ button:disabled {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
     color: white;
     margin: 0 auto 1rem;
 }
