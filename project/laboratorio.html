@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccionar Laboratorio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="laboratorio-screen" class="screen active">
+        <div class="header">
+            <div class="header-left">
+                <div class="logo-small">
+                    <img src="logo_uth_1.png" alt="UTH Logo" class="logo-img">
+                </div>
+                <h1>BITÁCORA</h1>
+            </div>
+            <button class="logout-btn" onclick="logout()">Cerrar Sesión</button>
+        </div>
+
+        <div class="content laboratorio-content">
+            <div class="sidebar">
+                <button class="back-btn" onclick="backToEdificio()">← Volver a edificios</button>
+                <h3 id="edificio-title">Laboratorios del edificio</h3>
+            </div>
+
+            <div class="main-content">
+                <div class="selection-container">
+                    <h2>Selecciona el laboratorio</h2>
+                    <div id="laboratorio-buttons" class="button-group-vertical">
+                        <!-- Aquí van los botones dinámicos -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const edificio = localStorage.getItem("edificio") || "";
+        document.getElementById("edificio-title").innerText = "Laboratorios del edificio " + edificio;
+
+        const container = document.getElementById("laboratorio-buttons");
+        container.innerHTML = "";
+
+        let laboratorios = [];
+
+        if (edificio === "E") {
+            laboratorios = ["E2", "E3", "E4", "E5"];
+        } else if (edificio === "R") {
+            laboratorios = ["R1", "R2"];
+        }
+
+        laboratorios.forEach(nombre => {
+            const btn = document.createElement("button");
+            btn.innerText = nombre;
+            btn.className = "selection-btn";
+            btn.onclick = () => {
+                localStorage.setItem("laboratorio", nombre);
+                window.location.href = "registros.html";
+            };
+            container.appendChild(btn);
+        });
+    });
+
+    function backToEdificio() {
+        window.location.href = "edificio.html";
+    }
+
+    function logout() {
+        localStorage.clear();
+        window.location.href = "index.html";
+    }
+    </script>
+</body>
+</html>

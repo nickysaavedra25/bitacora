@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registros</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="records-screen" class="screen active">
+        <div class="header">
+            <div class="header-left">
+                <div class="logo-small">
+                    <img src="logo_uth_1.png" alt="UTH Logo" class="logo-img">
+                </div>
+                <h1>BITACORA</h1>
+            </div>
+            <button class="logout-btn" onclick="logout()">Cerrar Sesión</button>
+        </div>
+        <div class="content">
+            <div class="records-container">
+                <h2 id="records-title">BITACORA LABORATORIO</h2>
+                <div id="records-content">
+                    <div class="no-records">
+                        <div>No hay registros disponibles para este laboratorio</div>
+                        <p>Crea tu primera bitácora para verla aquí</p>
+                    </div>
+                </div>
+                <div class="records-actions">
+                    <button onclick="window.location.href='bitacora.html'">Agregar Registro</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+      function logout() {
+        localStorage.clear();
+        window.location.href = "index.html";
+    }
+    </script>
+</body>
+</html>

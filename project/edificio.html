@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccionar Edificio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="edificio-screen" class="screen active">
+        <div class="header">
+            <div class="header-left">
+                <div class="logo-small">
+                    <img src="logo_uth_1.png" alt="UTH Logo" class="logo-img">
+                </div>
+                <h1>BITACORA</h1>
+            </div>
+            <button class="logout-btn" onclick="logout()">Cerrar Sesión</button>
+        </div>
+
+        <div class="content">
+            <div class="selection-container">
+                <h2>Selecciona el Edificio</h2>
+                <button onclick="selectEdificio('E')">Edificio E</button>
+                <button onclick="selectEdificio('R')">Edificio R</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function selectEdificio(edificio) {
+        localStorage.setItem("edificio", edificio);
+        window.location.href = "laboratorio.html";
+    }
+
+    function logout() {
+        localStorage.clear();
+        window.location.href = "index.html";
+    }
+    </script>
+</body>
+</html>

@@ -3,242 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Bitácora de Laboratorios UTH</title>
+    <title>Login - Bitácora UTH</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="app">
-        <!-- Login Screen -->
-        <div id="login-screen" class="screen active">
-            <div class="header">
-                <h1>REGISTRO DE BITACORAS</h1>
-            </div>
-            <div class="content">
-                <div class="login-container">
-                    <div class="logo-container">
-                        <div class="logo-large">
-                            <img src="./logo_uth_1.png" alt="UTH Logo" class="logo-large logo-img">
-                        </div>
-                    </div>
-                    <h>BIENVENIDO </h>
-                    <p>Ingresa tu matrícula</p>
-                    <form id="login-form">
-                        <input type="text" id="matricula" placeholder="Matrícula" required>
-                        <button type="submit">Ingresar</button>
-                    </form>
-                </div>
-            </div>
+    <div id="login-screen" class="screen active">
+        <div class="header">
+            <h1>BITACORAS</h1>
         </div>
-
-        <!-- Edificio Screen -->
-        <div id="edificio-screen" class="screen">
-            <div class="header">
-                <div class="header-left">
-                    <div class="logo-small">
-                        <img src="../project/logo_uth_1.png" alt="UTH Logo" class="logo-img">
-                    </div>
-                    <h1>BITACORA</h1>
-                </div>
-                <button class="logout-btn" onclick="logout()">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                        <polyline points="16,17 21,12 16,7"/>
-                        <line x1="21" y1="12" x2="9" y2="12"/>
-                    </svg>
-                    Cerrar Sesión
-                </button>
-            </div>
-            <div class="content">
-                <div class="selection-container">
-                    <h2>Selecciona el Edificio</h2>
-                    <div class="button-group">
-                        <button class="selection-btn" onclick="selectEdificio('E')">Edificio E</button>
-                        <button class="selection-btn" onclick="selectEdificio('R')">Edificio R</button>
+        <div class="content">
+            <div class="login-container">
+                <div class="logo-container">
+                    <div class="logo-large">
+                        <img src="logo_uth_1.png" alt="UTH Logo" class="logo-large logo-img">
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Laboratorio Screen -->
-        <div id="laboratorio-screen" class="screen">
-            <div class="header">
-                <div class="header-left">
-                    <div class="logo-small">
-                        <img src="./logo_uth_1.png" alt="UTH Logo" class="logo-img">
-                    </div>
-                    <h1>BITACORA</h1>
-                </div>
-                <button class="logout-btn" onclick="logout()">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                        <polyline points="16,17 21,12 16,7"/>
-                        <line x1="21" y1="12" x2="9" y2="12"/>
-                    </svg>
-                    Cerrar Sesión
-                </button>
-            </div>
-            <div class="content laboratorio-content">
-                <div class="sidebar">
-                    <button class="back-btn" onclick="backToEdificio()">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="15,18 9,12 15,6"/>
-                        </svg>
-                        Volver a edificios
-                    </button>
-                    <h3 id="edificio-title">Laboratorios del edificio</h3>
-                </div>
-                <div class="main-content">
-                    <div class="selection-container">
-                        <h2>Selecciona el laboratorio a utilizar</h2>
-                        <div id="laboratorio-buttons" class="button-group-vertical">
-                            <!-- Buttons will be populated by JavaScript -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Records Screen -->
-        <div id="records-screen" class="screen">
-            <div class="header">
-                <div class="header-left">
-                    <div class="logo-small">
-                        <img src="./logo_uth_1.png" alt="UTH Logo" class="logo-img">
-                    </div>
-                    <h1>BITACORA</h1>
-                </div>
-                <button class="logout-btn" onclick="logout()">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                        <polyline points="16,17 21,12 16,7"/>
-                        <line x1="21" y1="12" x2="9" y2="12"/>
-                    </svg>
-                    Cerrar Sesión
-                </button>
-            </div>
-            <div class="content">
-                <div class="records-container">
-                    <h2 id="records-title">BITACORA LABORATORIO</h2>
-                    <div id="records-content">
-                        <div class="no-records">
-                            <div>No hay registros disponibles para este laboratorio</div>
-                            <p>Crea tu primera bitácora para verla aquí</p>
-                        </div>
-                    </div>
-                    <div class="records-actions">
-                        <button class="save-btn" onclick="showBitacoraForm()">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="12" y1="5" x2="12" y2="19"/>
-                                <line x1="5" y1="12" x2="19" y2="12"/>
-                            </svg>
-                            Agregar Registro
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bitacora Form Screen -->
-        <div id="bitacora-screen" class="screen">
-            <div class="header">
-                <div class="header-left">
-                    <div class="logo-small">
-                        <img src="./logo_uth_1.png" alt="UTH Logo" class="logo-img">
-                    </div>
-                    <h1>BITACORA</h1>
-                </div>
-                <div class="header-right">
-                    <button class="view-records-btn" onclick="backToRecords()">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                            <circle cx="12" cy="12" r="3"/>
-                        </svg>
-                        Ver Registros
-                    </button>
-                    <button class="logout-btn" onclick="logout()">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                            <polyline points="16,17 21,12 16,7"/>
-                            <line x1="21" y1="12" x2="9" y2="12"/>
-                        </svg>
-                        Cerrar Sesión
-                    </button>
-                </div>
-            </div>
-            <div class="content">
-                <div class="form-container">
-                    <h2>Nuevo Registro</h2>
-                    <p id="laboratorio-info">Laboratorio: </p>
-                    <form id="bitacora-form">
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label>Fecha (automática)</label>
-                                <input type="date" id="fecha" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Hora de inicio (automática)</label>
-                                <input type="time" id="hora-inicio" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Hora de salida</label>
-                                <input type="time" id="hora-salida" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Grupo</label>
-                                <input type="text" id="grupo" placeholder="Ej: 1A, 2B, etc." required>
-                            </div>
-                            <div class="form-group">
-                                <label>Matrícula</label>
-                                <input type="text" id="matricula-bitacora" placeholder="Ej: 3522110875" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Cuatrimestre</label>
-                                <input type="text" id="cuatrimestre" placeholder="Ej: 3°" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Número de alumnos</label>
-                                <input type="number" id="num-alumnos" min="1" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Edificio</label>
-                                <input type="text" id="edificio-readonly" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label>Clase</label>
-                                <input type="text" id="curso" placeholder="Ej: Laboratorio Web" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Observaciones</label>
-                            <textarea id="observaciones" placeholder="Anota las observaciones" rows="4" required></textarea>
-                        </div>
-                        <div class="form-actions">
-                            <button type="button" class="cancel-btn" onclick="backToRecords()">Cancelar</button>
-                            <button type="submit" class="save-btn">Guardar Bitácora</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <!-- Success Modal -->
-        <div id="success-modal" class="modal">
-            <div class="modal-content">
-                <div class="success-icon">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20,6 9,17 4,12"/>
-                    </svg>
-                </div>
-                <h2>¡Bitácora Guardada!</h2>
-                <p>Tu registro ha sido guardado exitosamente en el sistema.</p>
-                <div class="modal-actions">
-                    <button class="modal-btn secondary" onclick="closeModal()">Crear Nueva</button>
-                    <button class="modal-btn primary" onclick="viewRecordsFromModal()">Ver Registros</button>
-                </div>
+                <h>BIENVENIDO</h>
+                <p>Ingresa tu matrícula</p>
+                <form id="login-form">
+  <input type="text" id="matricula" placeholder="Matrícula" required>
+  <button type="submit">Ingresar</button>
+</form>
             </div>
         </div>
     </div>
-
     <script src="script.js"></script>
+    
+<script>
+document.getElementById("login-form").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const matricula = document.getElementById("matricula").value;
+  localStorage.setItem("matricula", matricula);
+  window.location.href = "edificio.html";
+});
+</script>
+
 </body>
 </html>
