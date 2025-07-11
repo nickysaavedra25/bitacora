@@ -7,130 +7,131 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="app">
-        <!-- Admin Dashboard -->
-        <div id="admin-screen" class="screen active">
-            <div class="header">
-                <div class="header-left">
-                    <div class="logo-small">
-                        <img src="./public/image.png" alt="UTH Logo" class="logo-img">
-                    </div>
-                    <h1>BITACORA - ADMINISTRADOR</h1>
+    <div id="admin-screen" class="screen active">
+        <!-- Header consistente con otras pantallas -->
+        <div class="header">
+            <div class="header-left">
+                <div class="logo-small">
+                    <img src="logo_uth_1.png" alt="UTH Logo" class="logo-img">
                 </div>
-                <button class="logout-btn" onclick="logout()">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                        <polyline points="16,17 21,12 16,7"/>
-                        <line x1="21" y1="12" x2="9" y2="12"/>
-                    </svg>
-                    Cerrar Sesión
-                </button>
+                <h1>BITACORA - ADMINISTRADOR</h1>
             </div>
-            <div class="content admin-content">
-                <div class="admin-container">
-                    <div class="admin-header">
-                        <h2>Panel de Administración</h2>
-                        <p>Gestiona y visualiza todas las bitácoras del sistema</p>
+            <button class="logout-btn" onclick="logout()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                    <polyline points="16,17 21,12 16,7"/>
+                    <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+                Cerrar Sesión
+            </button>
+        </div>
+        
+        <!-- Contenido principal -->
+        <div class="content">
+            <div class="admin-container">
+                <!-- Título principal -->
+                <h2 id="admin-title">PANEL DE ADMINISTRACIÓN</h2>
+                
+                <!-- Selector de edificio -->
+                <div class="edificio-selection">
+                    <h3>Seleccionar Edificio</h3>
+                    <div class="edificio-buttons">
+                        <button class="edificio-btn active" onclick="selectAdminEdificio('all')" data-edificio="all">
+                            <span>Todos los Edificios</span>
+                            <small id="count-all">0 registros</small>
+                        </button>
+                        <button class="edificio-btn" onclick="selectAdminEdificio('E')" data-edificio="E">
+                            <span>Edificio E</span>
+                            <small id="count-E">0 registros</small>
+                        </button>
+                        <button class="edificio-btn" onclick="selectAdminEdificio('R')" data-edificio="R">
+                            <span>Edificio R</span>
+                            <small id="count-R">0 registros</small>
+                        </button>
                     </div>
-                    
-                    <div class="edificio-selection">
-                        <h3>Seleccionar Edificio</h3>
-                        <div class="edificio-buttons">
-                            <button class="edificio-btn active" onclick="selectAdminEdificio('all')" data-edificio="all">
-                                <span>Todos los Edificios</span>
-                                <small id="count-all">0 registros</small>
-                            </button>
-                            <button class="edificio-btn" onclick="selectAdminEdificio('E')" data-edificio="E">
-                                <span>Edificio E</span>
-                                <small id="count-E">0 registros</small>
-                            </button>
-                            <button class="edificio-btn" onclick="selectAdminEdificio('R')" data-edificio="R">
-                                <span>Edificio R</span>
-                                <small id="count-R">0 registros</small>
-                            </button>
-                        </div>
-                    </div>
+                </div>
 
-                    <div class="filters-section">
-                        <h3>Filtros de Búsqueda</h3>
-                        <div class="filters-grid">
-                            <div class="filter-group">
-                                <label>Carrera</label>
-                                <select id="filter-carrera">
-                                    <option value="">Todas las carreras</option>
-                                    <option value="Ingeniería en Sistemas">Ingeniería en Sistemas</option>
-                                    <option value="Ingeniería Industrial">Ingeniería Industrial</option>
-                                    <option value="Administración">Administración</option>
-                                    <option value="Contaduría">Contaduría</option>
-                                    <option value="Mercadotecnia">Mercadotecnia</option>
-                                    <option value="Gastronomía">Gastronomía</option>
-                                </select>
-                            </div>
-                            <div class="filter-group">
-                                <label>Fecha Desde</label>
-                                <input type="date" id="filter-fecha-desde">
-                            </div>
-                            <div class="filter-group">
-                                <label>Fecha Hasta</label>
-                                <input type="date" id="filter-fecha-hasta">
-                            </div>
-                            <div class="filter-group">
-                                <label>Matrícula</label>
-                                <input type="text" id="filter-matricula" placeholder="Buscar por matrícula">
-                            </div>
-                            <div class="filter-group">
-                                <label>Laboratorio</label>
-                                <select id="filter-laboratorio">
-                                    <option value="">Todos los laboratorios</option>
-                                    <option value="E2">E2</option>
-                                    <option value="E3">E3</option>
-                                    <option value="E4">E4</option>
-                                    <option value="E5">E5</option>
-                                    <option value="R1">R1</option>
-                                    <option value="R2">R2</option>
-                                </select>
-                            </div>
-                            <div class="filter-group">
-                                <label>Grupo</label>
-                                <input type="text" id="filter-grupo" placeholder="Ej: 1A, 2B">
-                            </div>
+                <!-- Filtros de búsqueda -->
+                <div class="filters-section">
+                    <h3>Filtros de Búsqueda</h3>
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label>Carrera</label>
+                            <select id="filter-carrera">
+                                <option value="">Todas las carreras</option>
+                                <option value="Ingeniería en Sistemas">Ingeniería en Sistemas</option>
+                                <option value="Ingeniería Industrial">Ingeniería Industrial</option>
+                                <option value="Administración">Administración</option>
+                                <option value="Contaduría">Contaduría</option>
+                                <option value="Mercadotecnia">Mercadotecnia</option>
+                                <option value="Gastronomía">Gastronomía</option>
+                            </select>
                         </div>
-                        <div class="filter-actions">
-                            <button class="filter-btn" onclick="applyFilters()">
+                        <div class="filter-group">
+                            <label>Fecha Desde</label>
+                            <input type="date" id="filter-fecha-desde">
+                        </div>
+                        <div class="filter-group">
+                            <label>Fecha Hasta</label>
+                            <input type="date" id="filter-fecha-hasta">
+                        </div>
+                        <div class="filter-group">
+                            <label>Matrícula</label>
+                            <input type="text" id="filter-matricula" placeholder="Buscar por matrícula">
+                        </div>
+                        <div class="filter-group">
+                            <label>Laboratorio</label>
+                            <select id="filter-laboratorio">
+                                <option value="">Todos los laboratorios</option>
+                                <option value="E2">E2</option>
+                                <option value="E3">E3</option>
+                                <option value="E4">E4</option>
+                                <option value="E5">E5</option>
+                                <option value="R1">R1</option>
+                                <option value="R2">R2</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Grupo</label>
+                            <input type="text" id="filter-grupo" placeholder="Ej: 1A, 2B">
+                        </div>
+                    </div>
+                    <div class="filter-actions">
+                        <button class="filter-btn" onclick="applyFilters()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"/>
+                                <path d="m21 21-4.35-4.35"/>
+                            </svg>
+                            Aplicar Filtros
+                        </button>
+                        <button class="clear-btn" onclick="clearFilters()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="6" x2="6" y2="18"/>
+                                <line x1="6" y1="6" x2="18" y2="18"/>
+                            </svg>
+                            Limpiar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Resultados -->
+                <div class="results-section">
+                    <div class="results-header">
+                        <h3 id="results-title">Todas las Bitácoras</h3>
+                        <div class="results-info">
+                            <span id="results-count">0 registros encontrados</span>
+                            <button class="export-btn" onclick="exportData()">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="11" cy="11" r="8"/>
-                                    <path d="m21 21-4.35-4.35"/>
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="7,10 12,15 17,10"/>
+                                    <line x1="12" y1="15" x2="12" y2="3"/>
                                 </svg>
-                                Aplicar Filtros
-                            </button>
-                            <button class="clear-btn" onclick="clearFilters()">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="18" y1="6" x2="6" y2="18"/>
-                                    <line x1="6" y1="6" x2="18" y2="18"/>
-                                </svg>
-                                Limpiar
+                                Exportar
                             </button>
                         </div>
                     </div>
-
-                    <div class="results-section">
-                        <div class="results-header">
-                            <h3 id="results-title">Todas las Bitácoras</h3>
-                            <div class="results-info">
-                                <span id="results-count">0 registros encontrados</span>
-                                <button class="export-btn" onclick="exportData()">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                                        <polyline points="7,10 12,15 17,10"/>
-                                        <line x1="12" y1="15" x2="12" y2="3"/>
-                                    </svg>
-                                    Exportar
-                                </button>
-                            </div>
-                        </div>
-                        <div id="admin-records-content">
-                            <!-- Records will be populated by JavaScript -->
-                        </div>
+                    <div id="admin-records-content">
+                        <!-- Los registros se cargarán aquí mediante JavaScript -->
                     </div>
                 </div>
             </div>
@@ -138,5 +139,11 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        function logout() {
+            localStorage.clear();
+            window.location.href = "index.html";
+        }
+    </script>
 </body>
 </html>
